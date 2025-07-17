@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QRIS Dinamis Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 40px; }
+    .container { background: #fff; max-width: 400px; margin: auto; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+    h1 { text-align: center; }
+    label { display: block; margin-bottom: 8px; }
+    input[type="number"] { width: 100%; padding: 8px; margin-bottom: 16px; border-radius: 4px; border: 1px solid #ccc; }
+    button { width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .qr-section { text-align: center; margin-top: 24px; }
+    .qris-string { word-break: break-all; font-size: 12px; background: #f0f0f0; padding: 8px; border-radius: 4px; margin-top: 8px; }
+    .error { color: #c00; text-align: center; margin-top: 12px; }
+    .summary { background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 1px 4px #0001; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; }
+    .summary-label { color: #555; font-weight: 500; }
+    .summary-row:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>QRIS Dinamis</h1>
+    <form id="qris-form">
+      <label for="qris-static">Masukkan String QRIS Statis:</label>
+      <textarea id="qris-static" name="qris-static" rows="3" style="width:100%;margin-bottom:12px;resize:vertical;" required></textarea>
+      <label for="nominal">Masukkan Nominal (Rp):</label>
+      <input type="number" id="nominal" name="nominal" min="1" required />
+      <button type="submit">Generate QRIS</button>
+    </form>
+    <div class="error" id="error"></div>
+    <div class="summary" id="qris-summary" style="display:none; margin-top:24px;">
+      <h3>Ringkasan QRIS</h3>
+      <div class="summary-row"><span class="summary-label">Nama Acquirer:</span> <span id="acquirer-name">-</span></div>
+      <div class="summary-row"><span class="summary-label">Nama Merchant:</span> <span id="merchant-name">-</span></div>
+      <div class="summary-row"><span class="summary-label">Lokasi Merchant:</span> <span id="merchant-location">-</span></div>
+      <div class="summary-row"><span class="summary-label">Merchant PAN:</span> <span id="merchant-pan">-</span></div>
+      <div class="summary-row"><span class="summary-label">Terminal ID:</span> <span id="terminal-id">-</span></div>
+      <div class="summary-row"><span class="summary-label">Jumlah:</span> <span id="summary-amount">-</span></div>
+    </div>
+    <div id="payment-status" style="display:none; margin-top:18px; font-size:18px; font-weight:bold; text-align:center;"></div>
+    <div class="qr-section" id="qr-section" style="display:none;">
+      <h3>QR Code</h3>
+      <img id="qr-img" src="" alt="QRIS Dinamis" />
+      <div class="qris-string" id="qris-string"></div>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html> 
