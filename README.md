@@ -10,7 +10,6 @@ Aplikasi ini mengubah **QRIS statis** menjadi **QRIS dinamis** dengan nominal pe
 * **Input Nominal Pembayaran:** Tentukan nominal yang diinginkan untuk transaksi.
 * **Generasi QRIS Dinamis:** Hasilkan QRIS dinamis lengkap dengan nominal pembayaran yang diinput.
 * **Tampilan Detail Merchant:** Menampilkan QR Code yang dihasilkan beserta ringkasan informasi merchant.
-* **Notifikasi Pembayaran Real-time:** Status pembayaran akan diperbarui secara otomatis dan *real-time* di antarmuka pengguna melalui WebSocket, siap untuk integrasi dengan *callback* pembayaran (misalnya dari GoBiz/GoPay).
 
 ---
 
